@@ -148,7 +148,8 @@ proved in this file.
 
 lemma mul_inv_cancel : y * y⁻¹ = 1 := by
   calc
-    y * y⁻¹ = y * := by sorry
+    y * y⁻¹ = y * 1 * y⁻¹ := by rw [mul_one]
+    _ = y * y⁻¹ * y * y⁻¹ := by rw [inv_mul_cancel]
     _ = 1 := by sorry
   done
 

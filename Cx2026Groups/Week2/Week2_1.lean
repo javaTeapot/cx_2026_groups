@@ -40,7 +40,11 @@ regrouping the product, then simplify the inverse pair and the identity.
 -/
 
 lemma inv_mul_cancel_left : g⁻¹ * (g * x) = x := by
-  sorry
+  calc
+    g⁻¹ * (g * x) = (g⁻¹ * g) * x := by rw [mul_assoc]
+    _ = 1 * x := by rw [inv_mul_cancel]
+    _ = x := by rw [one_mul]
+  done
 
 NewTheorem cx_2026.inv_mul_cancel_left
 
@@ -52,7 +56,9 @@ identity you proved in Exercise 0.4.
 -/
 
 lemma mul_inv_cancel_left : g * (g⁻¹ * x) = x := by
-  sorry
+  g * (g⁻¹ * x) = (g * g⁻¹) * x := by rw [mul_assoc]
+  _ = 1 * x := by rw [inv_mul_cancel]
+  _ = x := by rw[one_mul]
 
 NewTheorem cx_2026.mul_inv_cancel_left
 
@@ -91,7 +97,7 @@ NewTheorem cx_2026.mul_inv_rev
 Let's prove the right cancelling versions of our previous results.
 -/
 
-lemma mul_inv_cancel_right : (x * g) * g⁻¹ = x := by 
+lemma mul_inv_cancel_right : (x * g) * g⁻¹ = x := by
   calc
     (x * g) * g⁻¹ = sorry := by sorry
     _ = x := by sorry
