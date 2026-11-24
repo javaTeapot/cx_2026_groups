@@ -67,7 +67,8 @@ Show that the inverse of any member of `H` is in `H`. Try `intro` followed by
 
 example (x : G) : x ∈ H → x⁻¹ ∈ H := by
   intro hx
-  sorry
+  apply H.inv_mem
+  · exact hx
 
 /-!
 ## Exercise 0.2
@@ -79,8 +80,8 @@ us whether two elements belong to the same coset.
 
 example (x y : G) (hx : x ∈ H) (hy : y ∈ H) : x⁻¹ * y ∈ H := by
   apply H.mul_mem
-  · sorry
-  · sorry
+  · exact H.inv_mem hx
+  · exact hy
 
 /-!
 ## Exercise 0.3
@@ -91,8 +92,13 @@ Suppose `x ∈ H` and `x * y ∈ H`. Recover `y ∈ H` by first showing that
 
 example (x y : G) (hx : x ∈ H) (hxy : x * y ∈ H) : y ∈ H := by
   have h : x⁻¹ * (x * y) ∈ H := by
-    sorry
-  sorry
+    apply H.mul_mem
+    · exact H.inv_mem hx
+    · exact hxy
+  rw [←mul_assoc] at h
+  rw [inv_mul_cancel] at h
+  rw [one_mul] at h
+  exact h
 
 end
 
